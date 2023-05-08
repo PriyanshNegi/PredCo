@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <body>
+        <div class="container-fluid bg">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="contact-us-section">
+                        <div class="contact-us-right">
+                            <form
+                                action="{% url 'login' %}"
+                                method="POST"
+                                class="w3-margin w3-padding"
+                                novalidate
+                            >
+                                {% csrf_token %}
+                                
+                                <label for="username" class="form-label">Username or Email Address</label>
+                                {% if user_name %}
+                                <input
+                                    class="w3-input"
+                                    type="text"
+                                    placeholder="username"
+                                    name="username"
+                                    value={{user_name}}
+                                    required
+                                >
+                                {% else %}
+                                <input
+                                    class="w3-input"
+                                    type="text"
+                                    placeholder="username"
+                                    name="username"
+                                    required
+                                >
+                                {% endif %}
+                                <label for="password" class="form-label">Password</label>
+                                <input
+                                    class="w3-input"
+                                    type="password"
+                                    placeholder="password"
+                                    name="password"
+                                    required
+                                >
+                                <button class="w3-button w3-margin w3-large w3-teal" name="login_page" type="submit">Login</button>
+                                <br>
+                                <br>
+                            </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock %}

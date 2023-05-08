@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <body class='w3-center'>
+        <h1>Home page</h1>
+        <img src="https://img.freepik.com/free-vector/invoice-concept-illustration_114360-2485.jpg" alt="Italian Trulli" width=300></img><br>
+        {% if user.is_authenticated %}
+            <a href=""><button class='w3-button w3-round-large w3-teal w3-margin' type="button">Courses</button></a>
+            <a href=""><button class='w3-button w3-round-large w3-red w3-margin' type="button">LogOut</button></a>
+            
+        {% endif %}
+        </body>
+{% endblock %}
