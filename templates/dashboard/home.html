@@ -1,14 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-    <body class='w3-center'>
-        <h1>Home page</h1>
-        <img src="https://img.freepik.com/free-vector/invoice-concept-illustration_114360-2485.jpg" alt="Italian Trulli" width=300></img><br>
         {% if user.is_authenticated %}
-            <a href=""><button class='w3-button w3-round-large w3-teal w3-margin' type="button">Courses</button></a>
-            <a href=""><button class='w3-button w3-round-large w3-red w3-margin' type="button">LogOut</button></a>
+        <div id="review_form" style='display:none;' class="w3-modal">
+            <div class="w3-display-middle w3-padding" >
+              <button class='w3-right w3-button w3-round w3-red w3-padding' onclick="document.getElementById('review_form').style.display='none'" >&times;</button>
+              <div class=" w3-padding w3-round w3-border w3-white" id="content">
+                <form enctype='multipart/form-data' style="min-width:500px;" method='POST' action="{% url 'add-client' %}">
+                    <h4 class='w3-center'>New Client</h4>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type='submit' class='w3-block w3-margin-top w3-round w3-green w3-button' >Add Client</button> 
+                </form>
+              </div>
+            </div>
+        </div>
+        <body class="w3-theme-l4">
             
+            <div style="min-width:400px">
+            
+            <div class="w3-bar w3-large w3-theme-d4">
+              <a href="#" class="w3-bar-item w3-button"><i class="fa fa-bars"></i></a>
+              <span class="w3-bar-item">ADMIN DASHBOARD</span>
+              <a href="#" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"></i></a>
+            </div>
+            
+            
+            <div class="w3-container w3-content">
+                <div style="height: 50px; display: flex; align-items: center;">
+                    <h4 class="w3-opacity w3-margin-right"><b>Client Details</b></h4> 
+                    <button onclick="showReviewForm();" class='w3-btn w3-blue  w3-right'>Add new client +</button>
+                </div>
+                {% for org in orgs %}
+                <div class="w3-panel w3-round w3-white w3-border ">
+                    <table class="w3-table">
+                    <tr style="height: 50px; display: flex; align-items: center;">
+                        <td><a href="#"><h4>{{org.name}}</h4></a></td>
+                        <td class="w3-right"><h5>{{org.domain}}</h5></td>
+                        <td><h5>{{org.industry}}</h5></td>
+                        <td><a href="{% url 'delete-client' org.key %}"><button class="w3-btn w3-text-red w3-border w3-border-red w3-round">Delete</button></td>
+                    </tr>
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+            
+            </div>
+            
+            </body>
         {% endif %}
-        </body>
+        <script>
+            function showReviewForm(){document.getElementById('review_form').style.display = "block";}
+        </script>
 {% endblock %}

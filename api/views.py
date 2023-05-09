@@ -10,7 +10,9 @@ from .forms import *
 
 class DashboardView(View):
     def get(self, request, format=None):
-        return render(request, 'dashboard/home.html')
+        orgs = Org.objects.filter(our_admin=request.user)
+        form = OrgForm()
+        return render(request, 'dashboard/home.html', {'orgs': orgs, 'form': form})
 
 class LoginView(View):
     def get(self, request):
@@ -75,3 +77,19 @@ def logout(request):
     LoginHistory.objects.create(user=request.user, logged_in=False)
     auth.logout(request)
     return redirect('dashboard')
+
+class AddOrgView(View):
+    def post(self, request, format=None):
+        admin = request.user
+        form = OrgForm(request.POST, request.FILES)
+        if form.is_valid():
+            org = form.save(commit=False)
+            org.our_admin = admin
+            org.save()
+            return redirect('dashboard')
+        return redirect('dashboard')
+
+class RemoveClient(View):
+    def get(self, request, pk):
+        Org.objects.filter(key=pk).first().delete()
+        return redirect('dashboard')
