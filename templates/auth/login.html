@@ -2,7 +2,72 @@
 {% load static %}
 
 {% block content %}
-    <body>
+    <body class="w3-theme-l4">
+
+        <div style="min-width:400px;">
+        
+            <div class="w3-container w3-content">
+
+                <div style="min-width:500px;" class=" bg w3-display-middle">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <section class="contact-us-section w3-border w3-round">
+                                <div class="contact-us-right">
+                                    <h3 class="w3-center w3-padding">Welcome to PredCo</h3>
+                                    <form
+                                        action="{% url 'login' %}"
+                                        method="POST"
+                                        class="w3-margin w3-padding-large"
+                                        novalidate
+                                    >
+                                        {% csrf_token %}
+                                        
+                                        <label for="username" class="form-label">Username or Email Address</label>
+                                        {% if user_name %}
+                                        <input
+                                            class="w3-input"
+                                            type="text"
+                                            placeholder="username"
+                                            name="username"
+                                            value={{user_name}}
+                                            required
+                                        >
+                                        {% else %}
+                                        <input
+                                            class="w3-input"
+                                            type="text"
+                                            placeholder="username"
+                                            name="username"
+                                            required
+                                        >
+                                        {% endif %}
+                                        <br>
+                                        <label for="password" class="form-label">Password</label>
+                                        <input
+                                            class="w3-input"
+                                            type="password"
+                                            placeholder="password"
+                                            name="password"
+                                            required
+                                        >
+                                        <button class="w3-button w3-margin-top w3-block w3-teal" name="login_page" type="submit">LOGIN</button>
+                                        <br>
+                                        <br>
+                                    </form>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
+        </div>
+    
+    </body>
+
+    {% comment %} <body>
         <div class="container-fluid bg">
             <div class="row">
                 <div class="col-md-12">
@@ -53,5 +118,5 @@
                 </div>
             </div>
         </div>
-    </body>
+    </body> {% endcomment %}
 {% endblock %}

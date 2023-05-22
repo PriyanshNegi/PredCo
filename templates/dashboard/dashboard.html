@@ -8,11 +8,11 @@
             <div class="w3-display-middle w3-padding" >
               <button class='w3-right w3-button w3-round w3-red w3-padding' onclick="document.getElementById('review_form').style.display='none'" >&times;</button>
               <div class=" w3-padding w3-round w3-border w3-white" id="content">
-                <form enctype='multipart/form-data' style="min-width:500px;" method='POST' action="{% url 'add-client' %}">
-                    <h4 class='w3-center'>New Client</h4>
+                <form enctype='multipart/form-data' style="min-width:500px;" method='POST' action="{% url 'add-usecase' org.key %}">
+                    <h4 class='w3-center'>New UseCase</h4>
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type='submit' class='w3-block w3-margin-top w3-round w3-teal w3-button' >Add Client</button> 
+                    <button type='submit' class='w3-block w3-margin-top w3-round w3-teal w3-button' >Add UseCase</button> 
                 </form>
               </div>
             </div>
@@ -21,25 +21,25 @@
             
             <div style="min-width:400px;">
             
-            <div class="w3-bar w3-large w3-white w3-padding w3-theme-d4">
-              <a href="#" class="w3-bar-item w3-button"><i class="fa fa-bars"></i></a>
-              <span class="w3-bar-item ">ADMIN DASHBOARD</span>
+            <div class="w3-bar w3-white w3-padding w3-large w3-theme-d4">
+              <a href="{% url 'client-admin' %}" class="w3-bar-item w3-button w3-border w3-round"><i class="w3-large fa fa-arrow-left"></i></a>
+              <span class="w3-bar-item">{{org.name}}</span>
               <a href="#" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"></i></a>
             </div>
             
             <div class="w3-container w3-round w3-margin-top w3-content w3-padding w3-white">
                 <div style="height: 50px; display: flex; align-items: center;">
-                    <h4 class="w3-opacity w3-margin-right"><b>Client Details</b></h4> 
-                    <button onclick="showReviewForm();" class='w3-btn w3-teal w3-round w3-right'>Add new client +</button>
+                    <h4 class="w3-opacity w3-margin-right"><b>UseCases</b></h4> 
+                    <button onclick="showReviewForm();" class='w3-btn w3-teal w3-round w3-right'>Add new UseCase +</button>
                 </div>
-                {% for org in orgs %}
+                {% for use in uses %}
                 <div class="w3-panel w3-round w3-white w3-border">
                     <table class="w3-table">
-                    <tr style="height: 60px; display: flex; align-items: center;">
-                        <td><a href="{% url 'dashboard' org.key %}"><h4>{{org.name}}</h4></a></td>
-                        <td><h5>{{org.domain}}</h5></td>
-                        <td><h5>{{org.industry}}</h5></td>
-                        <td><a href="{% url 'delete-client' org.key %}"><button class="w3-btn w3-text-red w3-border w3-border-red w3-round">Delete</button></td>
+                    <tr style="display: flex; align-items: center;">
+                        <td><a href="{% url 'usecase' use.usecase.key %}"><h4>{{use.usecase.title}}</h4></a></td>
+                        <td><h5>{{use.usecase.desc}}</h5></td>
+                        <td><h5>{{use.sensors}}</h5></td>
+                        <td><a href="{% url 'delete-usecase' use.usecase.key org.key %}"><button class="w3-btn w3-text-red w3-border w3-border-red w3-round">Delete</button></td>
                     </tr>
                     </table>
                 </div>
