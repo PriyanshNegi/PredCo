@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+        <style>
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 30px;
+              }
+              
+              .switch input { 
+                opacity: 0;
+                width: 0;
+                height: 0;
+              }
+              
+              .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #f67575;
+                -webkit-transition: .4s;
+                transition: .4s;
+              }
+              
+              .slider:before {
+                position: absolute;
+                content: "";
+                height: 22px;
+                width: 22px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+              }
+              
+              input:checked + .slider {
+                background-color: rgb(0, 128, 113);
+              }
+              
+              input:focus + .slider {
+                box-shadow: 0 0 1px rgb(0, 128, 113);
+              }
+              
+              input:checked + .slider:before {
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+              }
+              
+              /* Rounded sliders */
+              .slider.round {
+                border-radius: 34px;
+              }
+              
+              .slider.round:before {
+                border-radius: 50%;
+              }
+        </style>
+
+        {% if user.is_authenticated %}
+
+        <body style=" background-color: rgb(226, 227, 227); height:100vh;" class="w3-theme-l4">
+            
+            <div class="w3-sidebar w3-bar-block w3-card w3-animate" style="display:block;width:25%;background-color: rgb(235, 238, 238); height: 100vh;" id="mySidebar">
+
+                <button class="w3-bar-item w3-hover-red w3-button w3-large"
+                onclick="w3_close()">Close &times;</button>
+
+                <div id="review_form" class="w3-display-bottom w3-padding" style='display:none;'>
+                    <div class="w3-padding w3-white w3-round w3-border w3-container" id="content">
+                        <form enctype='multipart/form-data' method='POST' action="{% url 'add-sensor' usecase.key %}">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+
+                            <button style="width:75%" type='submit' class='w3-half w3-margin-top w3-round w3-teal w3-button' >Add Sensor</button>
+                            <button style="width:20%" onclick="document.getElementById('review_form').style.display='none'" class='w3-half w3-right w3-margin-top w3-round w3-red w3-button' >&times;</button>  
+                        </form>
+                    </div>
+                </div>
+
+                <div class="w3-padding">
+                    <button onclick="showReviewForm();" class="w3-button w3-round w3-border-grey w3-white w3-block w3-border w3-large" >Add new sensor +</button>
+                    {% for sensor in sensors %}
+                        <div class="w3-margin-top w3-padding-top w3-padding-bottom w3-white" style="display: flex; align-items: center;">
+                            <button onclick="showSensorForm(this);" value="{{sensor.key}}" class="w3-button"><i class=" w3-xlarge fa fa-ellipsis-v"></i></button>
+                            <p style="text-transform: uppercase;">{{sensor.title}}</p>
+                            {% if sensor.active %}
+                                <i class="w3-text-green w3-xlarge w3-margin-left fa fa-circle"></i>
+                            {% else %}
+                                <i class="w3-text-grey  w3-xlarge w3-margin-left fa fa-circle"></i>
+                            {% endif %}
+                        </div>
+
+                        <div id="{{sensor.key}}more"  style='display:none;' class="w3-modal">
+                            <div class="w3-display-middle w3-padding " style="min-width:500px;">
+                              <button class='w3-right w3-button w3-red w3-padding' onclick="document.getElementById('{{sensor.key}}more').style.display='none'" >&times;</button>
+                              <ul class="w3-ul w3-card-4 w3-center w3-white">
+                                <li><p style="text-transform: uppercase;">{{sensor.title}}</p></li>
+                                <li>category <e class="w3-large w3-semibold">{{sensor.cat}}</e></li>
+                                <li>
+                                    <a style="text-decoration:none;" href="{% url 'delete-sensor' sensor.key usecase.key %}">
+                                        <button type='submit' class='w3-block w3-large w3-round w3-text-red w3-border w3-border-red w3-button' >Delete Sensor</button> 
+                                    </a>
+                                </li>
+                                <li>
+                                    {% if sensor.active %}
+                                      <a style="text-decoration:none;" href="{% url 'update-sensor' sensor.key usecase.key "False" %}">
+                                          <button type='submit' class='w3-block w3-large w3-round w3-text-red w3-border w3-border-red w3-button' >Deactivate Sensor</button> 
+                                      </a>
+                                    {% else %}
+                                      <a style="text-decoration:none;" href="{% url 'update-sensor' sensor.key usecase.key "True" %}">
+                                          <button type='submit' class='w3-block w3-large w3-round w3-text-teal w3-border w3-border-teal w3-button' >Activate Sensor</button> 
+                                      </a>
+                                    {% endif %} 
+                                </li>
+                              </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>  
+
+            </div>
+              
+            <div id="main" style="margin-left: 25%; height:100vh;">
+              <div class="w3-white w3-padding">
+                <button id="openNav" class="w3-button w3-round w3-border w3-large" onclick="w3_open()">&#9776; {{active}} Active sensors</button>
+                <a href="{% url 'dashboard' usecase.org.key %}">
+                  <button style="text-transform: uppercase;" class="w3-button w3-right w3-border w3-round w3-large">{{usecase.org.name}} - {{usecase.title}}</button>
+                </a>
+              </div>
+              
+              <div style="height:93vh;" class="w3-container w3-padding">
+                {% if usecase.iframe_link %}
+                  <iframe 
+                  src="{{usecase.iframe_link}}"
+                  height="100%" 
+                  width="100%"
+                  same-site="None"
+                  ></iframe>
+                {% else %}
+                  <form enctype='multipart/form-data' style="min-width:500px;" method='POST' action="{% url 'embed-dashboard' usecase.key %}">
+                    {% csrf_token %}
+                    <textarea name="dashboard_link" rows="5" placeholder="paste your iframe link here ...." class='w3-input w3-round w3-border' ></textarea>
+                    <button type='submit' class=' w3-margin-top w3-round w3-teal w3-button' >Embed dashboard</button> 
+                  </form>
+                {% endif %}
+              </div>
+              
+            </div>
+            
+        </body>
+
+        {% endif %}
+        <script>
+          const showSensorForm = (obj) => {
+            var id = obj.value;
+            console.log(id+'more')
+            document.getElementById(id+'more').style.display = 'block';
+          };
+
+          function w3_open() {
+              document.getElementById("main").style.marginLeft = "25%";
+              document.getElementById("mySidebar").style.width = "25%";
+              document.getElementById("mySidebar").style.display = "block";
+          }
+          function w3_close() {
+              document.getElementById("main").style.marginLeft = "0%";
+              document.getElementById("mySidebar").style.display = "none";
+              document.getElementById("openNav").style.display = "inline-block";
+          }
+
+          function showReviewForm(){document.getElementById('review_form').style.display = "block";}
+        </script>
+{% endblock %}

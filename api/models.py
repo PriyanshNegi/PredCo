@@ -81,19 +81,63 @@ class Org(models.Model):
     client_users = models.ManyToManyField(User, related_name="clients", blank=True)
     our_admin = models.ForeignKey(User, on_delete=models.CASCADE)
 
+def usecase_default():
+    length=10
+    while True:
+        code = ''.join(random.choices(string.ascii_lowercase,k=length))
+        break
+    return code
+
 class UseCase(models.Model):
+    key = models.SlugField(default=usecase_default)
     org = models.ForeignKey(Org, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     desc = models.TextField(max_length=400)
 
     iframe_link = models.TextField(max_length=1000)
 
+def sensor_default():
+    length=12
+    while True:
+        code = ''.join(random.choices(string.ascii_lowercase,k=length))
+        break
+    return code
+
 class Sensor(models.Model):
     CATEGORY_CHOICES = [
-            ('Beginner', 'Beginner'),
-            ('Intermediate', 'Intermediate'),
-            ('Advanced', 'Advanced')
-        ]
+        ('Temperature', 'Temperature'),
+        ('Humidity', 'Humidity'),
+        ('Light', 'Light'),
+        ('Pressure', 'Pressure'),
+        ('Sound', 'Sound'),
+        ('Motion', 'Motion'),
+        ('Proximity', 'Proximity'),
+        ('Gas', 'Gas'),
+        ('Color', 'Color'),
+        ('Electricity', 'Electricity'),
+        ('Magnetic', 'Magnetic'),
+        ('Acceleration', 'Acceleration'),
+        ('Gyroscope', 'Gyroscope'),
+        ('Barometer', 'Barometer'),
+        ('Infrared', 'Infrared'),
+        ('UV', 'UV'),
+        ('GPS', 'GPS'),
+        ('Flow', 'Flow'),
+        ('pH', 'pH'),
+        ('Humectant', 'Humectant'),
+        ('Smoke', 'Smoke'),
+        ('CO2', 'CO2'),
+        ('CO', 'CO'),
+        ('Ozone', 'Ozone'),
+        ('Water', 'Water'),
+        ('Vibration', 'Vibration'),
+        ('Weight', 'Weight'),
+        ('Level', 'Level'),
+        ('Radiation', 'Radiation'),
+        ('Other', 'Other')
+    ]
+
+    key = models.SlugField(default=sensor_default)
     cat = models.CharField(choices=CATEGORY_CHOICES, max_length=50)
     usecase = models.ForeignKey(UseCase, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
