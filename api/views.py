@@ -216,3 +216,28 @@ class EmbedDashboardView(View):
         usecase.save(update_fields=['iframe_link'])
 
         return redirect('usecase', slug=slug)
+
+# base_url = "https://<your-cloud-id>.cloud.elastic.co"
+# username = "<your-username>"
+# password = "<your-password>"
+
+# class RefreshAlertView(View):
+#     def post(self, request, format=None):
+#         url = f"{base_url}/.alerts-*/_search"
+#         headers = {
+#             "Content-Type": "application/json"
+#         }
+#         auth = (username, password)
+#         query = {
+#             "query": {
+#                 "match_all": {}
+#             }
+#         }
+#         response = requests.get(url, json=query, headers=headers, auth=auth)
+#         if response.status_code == 200:
+#             alerts = response.json()['hits']['hits']
+#             print(alerts)
+#             return redirect('dashboard')
+#         else:
+#             print(f"Error: {response.text}")
+#             return redirect('dashboard')

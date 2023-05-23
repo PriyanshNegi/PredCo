@@ -1,48 +1,48 @@
 
-celery==5.2.7
-certifi==2022.12.7
-cffi==1.15.1
-channels==3.0.5
-charset-normalizer==3.0.1
-commonmark==0.9.1
-confection==0.0.3
-constantly==15.1.0
+# celery==5.2.7
+# certifi==2022.12.7
+# cffi==1.15.1
+# channels==3.0.5
+# charset-normalizer==3.0.1
+# commonmark==0.9.1
+# confection==0.0.3
+# constantly==15.1.0
 
 coreschema==0.0.4
-coverage==6.3.2
-crypto==1.4.1
-cryptography==39.0.0
-ci
+# coverage==6.3.2
+# crypto==1.4.1
+# cryptography==39.0.0
+# ci
 
 dj-database-url==0.5.0
 dj-rest-auth==2.2.4
 Django==4.1.4
 django
 django-appconf==1.0.5
-django-celery-beat==2.4.0
-django-celery-email==3.0.0
-django-ckeditor==6.5.1
-django-cors-headers==3.13.0
+# django-celery-beat==2.4.0
+# django-celery-email==3.0.0
+# django-ckeditor==6.5.1
+# django-cors-headers==3.13.0
 django-crispy-forms==1.14.0
 django-dotenv==1.4.2
 django-email-verification==0.1.0
 django-environ==0.9.0
 django-etc==1.3.1
-django-extensions==3.1.3
-django-hitcount==1.3.5
-django-jazzmin==2.6.0
-django-js-asset==2.0.0
-django-nextjs==2.2.1
-django-recaptcha==2.0.6
+# django-extensions==3.1.3
+# django-hitcount==1.3.5
+# django-jazzmin==2.6.0
+# django-js-asset==2.0.0
+# django-nextjs==2.2.1
+# django-recaptcha==2.0.6
 django-resized==1.0.1
-django-rest-framework==0.1.0
-django-taggit==3.0.0
+# django-rest-framework==0.1.0
+# django-taggit==3.0.0
 django-templated-mail==1.1.1
 django-timezone-field==5.0
-django-tinymce==3.4.0
-djangorestframework==3.14.0
-djangorestframework-jwt==1.11.0
-djangorestframework-simplejwt==4.8.0
+# django-tinymce==3.4.0
+# djangorestframework==3.14.0
+# djangorestframework-jwt==1.11.0
+# djangorestframework-simplejwt==4.8.0
 djoser==2.1.0
 dnspython==2.2.1
 drf-firebase-auth==1.0.0
@@ -51,14 +51,14 @@ django-crispy-forms
 
 Pillow
 
-frozenlist==1.3.1
-gast==0.4.0
-gevent==22.10.2
-gitdb==4.0.10
-GitPython==3.1.30
+# frozenlist==1.3.1
+# gast==0.4.0
+# gevent==22.10.2
+# gitdb==4.0.10
+# GitPython==3.1.30
 
-greenlet==2.0.1
-grpcio==1.44.0
+# greenlet==2.0.1
+# grpcio==1.44.0
 gunicorn==20.1.0
 h11==0.14.0
 h5py==3.7.0
@@ -67,7 +67,7 @@ httplib2==0.20.4
 httpx==0.23.3
 hyperlink==21.0.0
 
-jedi==0.18.1
+# jedi==0.18.1
 Jinja2==3.1.2
 joblib==1.1.0
 json5==0.9.11
@@ -75,70 +75,69 @@ jsonpickle==3.0.1
 jsonpointer==2.3
 jsonschema==4.17.3
 
-kiwisolver==1.3.2
-kombu==5.2.4
-langcodes==3.3.0
-libclang==14.0.6
-Markdown==3.4.1
-MarkupSafe==2.1.2
-matplotlib==3.5.1
-matplotlib-inline==0.1.3
-mistune==2.0.5
-msgpack==1.0.3
-multidict==6.0.2
-murmurhash==1.0.9
-mypy-extensions==0.4.3
-mysqlclient==2.1.1
-Naked==0.1.31
-nbclassic==0.5.5
-nbclient==0.5.9
-nbconvert==7.3.1
-nbformat==5.8.0
-nest-asyncio==1.5.4
-networks==0.3.7
+# kiwisolver==1.3.2
+# kombu==5.2.4
+# langcodes==3.3.0
+# libclang==14.0.6
+# Markdown==3.4.1
+# MarkupSafe==2.1.2
+# matplotlib==3.5.1
+# matplotlib-inline==0.1.3
+# mistune==2.0.5
+# msgpack==1.0.3
+# multidict==6.0.2
+# murmurhash==1.0.9
+# mypy-extensions==0.4.3
+# mysqlclient==2.1.1
+# Naked==0.1.31
+# nbclassic==0.5.5
+# nbclient==0.5.9
+# nbconvert==7.3.1
+# nbformat==5.8.0
+# nest-asyncio==1.5.4
+# networks==0.3.7
 
-npm==0.1.1
 numpy==1.22.3
 oauth2client==4.1.3
 oauthlib==3.2.2
 opt-einsum==3.3.0
 optional-django==0.1.0
-packaging==21.3
-paho-mqtt==1.6.1
-pandas==1.4.2
-pandoc==2.2
-pandocfilters==1.5.0
-parso==0.8.3
+# packaging==21.3
+# paho-mqtt==1.6.1
+# pandas==1.4.2
+# pandoc==2.2
+# pandocfilters==1.5.0
+# parso==0.8.3
 
-PyJWT==2.6.0
-Pympler==1.0.1
-PyMuPDF==1.19.3
-PyMySQL==1.0.2
-pyOpenSSL==22.0.0
-pyparsing==3.0.8
-pyrsistent==0.18.0
-python-crontab==2.7.1
-python-dateutil==2.8.2
-python-decouple==3.6
-python-dotenv==0.21.0
-python-json-logger==2.0.7
-python3-openid==3.2.0
-pytz==2022.7
-pytz-deprecation-shim==0.1.0.post0
-pywin32==303
-pywinpty==2.0.10
-PyYAML==6.0
-pyzmq==25.0.2
-qtconsole==5.2.2
-QtPy==2.0.0
-rake-nltk==1.0.6
-redis==4.4.0
-regex==2022.10.31
+# PyJWT==2.6.0
+# Pympler==1.0.1
+# PyMuPDF==1.19.3
+# PyMySQL==1.0.2
+# pyOpenSSL==22.0.0
+# pyparsing==3.0.8
+# pyrsistent==0.18.0
+# python-crontab==2.7.1
+# python-dateutil==2.8.2
+# python-decouple==3.6
+# python-dotenv==0.21.0
+# python-json-logger==2.0.7
+# python3-openid==3.2.0
+# pytz==2022.7
+# pytz-deprecation-shim==0.1.0.post0
+# pywin32==303
+# pywinpty==2.0.10
+# PyYAML==6.0
+# pyzmq==25.0.2
+# qtconsole==5.2.2
+# QtPy==2.0.0
+# rake-nltk==1.0.6
+# redis==4.4.0
+# regex==2022.10.31
 requests==2.28.2
 requests-oauthlib==1.3.1
 
-spotipy==2.19.0
-sqlparse==0.4.3
+# spotipy==2.19.0
+# sqlparse==0.4.3
 
 uri-template==1.2.0
 uritemplate==4.1.1
@@ -150,7 +149,7 @@ watchdog==2.2.0
 wcwidth==0.2.5
 webcolors==1.13
 webencodings==0.5.1
-websocket-client==1.5.1
-websockets==10.3
-whitenoise==6.0.0
+# websocket-client==1.5.1
+# websockets==10.3
+# whitenoise==6.0.0
 

@@ -143,3 +143,21 @@ class Sensor(models.Model):
     title = models.CharField(max_length=100)
 
     active = models.BooleanField(default=False)
+
+# class Alert(models.Model):
+#     CATEGORY_CHOICES = [
+#         ('Email', 'Email'),
+#         ('Logstash', 'Logstash'),
+#         ('Reindex', 'Reindex'),
+#         ('Slack', 'Slack'),
+#     ]
+#     LEVEL_CHOICES = [
+#         ('High Priority', 'High Priority'),
+#         ('Average Level Alert', 'Average Level Alert'),
+#         ('Warning', 'Warning'),
+#     ]
+#     key = models.CharField(max_length=50)
+#     title = models.CharField(max_length=100)
+
+#     level = models.CharField(choices=LEVEL_CHOICES, max_length=15)
+#     cat = models.CharField(choices=CATEGORY_CHOICES, max_length=15)
