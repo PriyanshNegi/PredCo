@@ -68,7 +68,7 @@ class LoginView(View):
                     messages.error(
                         request, "The username or Email you have entered does not exist.")
 
-                    return render(request, 'login.html', context)
+                    return render(request, 'auth/login.html', context)
 
             context = {
                 'user_found': True,
@@ -76,9 +76,9 @@ class LoginView(View):
             }
             messages.error(request, 'Invalid credentials, try again')
 
-            return render(request, 'login.html', context)
+            return render(request, 'auth/login.html', context)
 
-        return render(request, "login.html")
+        return render(request, "auth/login.html")
 
 
 def logout(request):
