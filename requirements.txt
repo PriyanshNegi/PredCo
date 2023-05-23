@@ -97,11 +97,11 @@ jsonschema==4.17.3
 # nest-asyncio==1.5.4
 # networks==0.3.7
 
-numpy==1.22.3
+# numpy==1.22.3
 oauth2client==4.1.3
 oauthlib==3.2.2
-opt-einsum==3.3.0
-optional-django==0.1.0
+# opt-einsum==3.3.0
+# optional-django==0.1.0
 # packaging==21.3
 # paho-mqtt==1.6.1
 # pandas==1.4.2
