@@ -20,6 +20,7 @@ urlpatterns = [
     path('update-sensor/<str:pk>/<str:usecase_slug>/<str:status>', UpdateSensorStatus.as_view(), name='update-sensor'),
 
     path('embed-dashboard/<str:slug>', EmbedDashboardView.as_view(), name='embed-dashboard'),
+    # path('refresh-alerts', EmbedDashboardView.as_view(), name='embed-dashboard'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
